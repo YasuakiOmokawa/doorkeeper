@@ -33,6 +33,7 @@ RSpec.describe "Refresh Token Flow" do
 
       expect(@authorization.reload).to be_revoked
 
+      binding.b
       post refresh_token_endpoint_url(client: @client, refresh_token: token.refresh_token)
 
       new_token = Doorkeeper::AccessToken.last
