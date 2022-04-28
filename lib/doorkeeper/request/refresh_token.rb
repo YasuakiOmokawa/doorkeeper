@@ -10,13 +10,14 @@ module Doorkeeper
       end
 
       def request
-        binding.b
         @request ||= OAuth::RefreshTokenRequest.new(
           Doorkeeper.config,
           refresh_token,
           credentials,
           parameters,
         )
+        binding.b
+        @request
       end
     end
   end

@@ -36,6 +36,7 @@ RSpec.describe "Refresh Token Flow" do
       binding.b
       post refresh_token_endpoint_url(client: @client, refresh_token: token.refresh_token)
 
+      binding.b
       new_token = Doorkeeper::AccessToken.last
       expect(json_response).to include(
         "access_token" => new_token.token,
