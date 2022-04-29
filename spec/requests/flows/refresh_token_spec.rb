@@ -22,6 +22,7 @@ RSpec.describe "Refresh Token Flow" do
     end
 
     it "client gets the refresh token and refreshes it" do
+      binding.b
       post token_endpoint_url(code: @authorization.token, client: @client)
 
       token = Doorkeeper::AccessToken.first
