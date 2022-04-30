@@ -22,7 +22,6 @@ RSpec.describe "Refresh Token Flow" do
     end
 
     it "client gets the refresh token and refreshes it" do
-      binding.b
       post token_endpoint_url(code: @authorization.token, client: @client)
 
       token = Doorkeeper::AccessToken.first
@@ -34,10 +33,8 @@ RSpec.describe "Refresh Token Flow" do
 
       expect(@authorization.reload).to be_revoked
 
-      binding.b
       post refresh_token_endpoint_url(client: @client, refresh_token: token.refresh_token)
 
-      binding.b
       new_token = Doorkeeper::AccessToken.last
       expect(json_response).to include(
         "access_token" => new_token.token,
@@ -62,6 +59,7 @@ RSpec.describe "Refresh Token Flow" do
 
     context "when refresh_token revoked on use" do
       it "client requests a token with refresh token" do
+        binding.b
         post refresh_token_endpoint_url(
           client: @client, refresh_token: @token.refresh_token,
         )
@@ -72,13 +70,16 @@ RSpec.describe "Refresh Token Flow" do
       end
 
       it "client requests a token with expired access token" do
+        binding.b
         @token.update_attribute :expires_in, -100
+        binding.b
         post refresh_token_endpoint_url(
           client: @client, refresh_token: @token.refresh_token,
         )
         expect(json_response).to include(
           "refresh_token" => Doorkeeper::AccessToken.last.refresh_token,
         )
+        binding.b
         expect(@token.reload).not_to be_revoked
       end
     end
