@@ -59,28 +59,23 @@ RSpec.describe "Refresh Token Flow" do
 
     context "when refresh_token revoked on use" do
       it "client requests a token with refresh token" do
-        binding.b
         post refresh_token_endpoint_url(
           client: @client, refresh_token: @token.refresh_token,
         )
         expect(json_response).to include(
           "refresh_token" => Doorkeeper::AccessToken.last.refresh_token,
         )
-        binding.b
         expect(@token.reload).not_to be_revoked
       end
 
       it "client requests a token with expired access token" do
-        binding.b
         @token.update_attribute :expires_in, -100
-        binding.b
         post refresh_token_endpoint_url(
           client: @client, refresh_token: @token.refresh_token,
         )
         expect(json_response).to include(
           "refresh_token" => Doorkeeper::AccessToken.last.refresh_token,
         )
-        binding.b
         expect(@token.reload).not_to be_revoked
       end
     end
@@ -156,6 +151,7 @@ RSpec.describe "Refresh Token Flow" do
       it "returns an error without credentials" do
         post refresh_token_endpoint_url(refresh_token: token_for_private_client.refresh_token)
 
+        binding.b
         expect(json_response).to include("error" => "invalid_grant")
       end
 
