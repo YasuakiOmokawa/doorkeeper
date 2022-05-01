@@ -16,8 +16,6 @@ module Doorkeeper
           credentials,
           parameters,
         )
-        binding.b
-        @request
       end
     end
   end

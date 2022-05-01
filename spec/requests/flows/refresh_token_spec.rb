@@ -66,6 +66,7 @@ RSpec.describe "Refresh Token Flow" do
         expect(json_response).to include(
           "refresh_token" => Doorkeeper::AccessToken.last.refresh_token,
         )
+        binding.b
         expect(@token.reload).not_to be_revoked
       end
 
