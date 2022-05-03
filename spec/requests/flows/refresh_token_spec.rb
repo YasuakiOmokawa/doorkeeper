@@ -149,7 +149,8 @@ RSpec.describe "Refresh Token Flow" do
       end
 
       it "returns an error without credentials" do
-        post refresh_token_endpoint_url(refresh_token: token_for_private_client.refresh_token)
+        post refresh_token_endpoint_url(
+          refresh_token: token_for_private_client.refresh_token)
 
         binding.b
         expect(json_response).to include("error" => "invalid_grant")
@@ -161,6 +162,7 @@ RSpec.describe "Refresh Token Flow" do
           client_secret: "1",
           refresh_token: token_for_private_client.refresh_token,
         )
+        binding.b
         expect(json_response).to match(
           "error" => "invalid_client",
           "error_description" => an_instance_of(String),
