@@ -132,6 +132,7 @@ module Doorkeeper
         before_successful_authorization
         binding.b
         auth = strategy.authorize
+        binding.b
         context = build_context(auth: auth)
         after_successful_authorization(context) unless auth.is_a?(Doorkeeper::OAuth::ErrorResponse)
         auth

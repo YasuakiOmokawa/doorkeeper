@@ -15,6 +15,7 @@ module Doorkeeper
 
     def token_request(strategy)
       klass = Request.token_strategy(strategy)
+      binding.b
       klass.new(self)
     end
 
