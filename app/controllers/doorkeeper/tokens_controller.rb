@@ -124,14 +124,17 @@ module Doorkeeper
     end
 
     def strategy
-      @strategy ||= server.token_request(params[:grant_type])
+      s = server
+      p = params[:grant_type]
+      binding.b
+      @strategy ||= s.token_request(p)
     end
 
     def authorize_response
       @authorize_response ||= begin
         before_successful_authorization
-        binding.b
-        auth = strategy.authorize
+        s = strategy
+        auth = s.authorize
         binding.b
         context = build_context(auth: auth)
         after_successful_authorization(context) unless auth.is_a?(Doorkeeper::OAuth::ErrorResponse)
