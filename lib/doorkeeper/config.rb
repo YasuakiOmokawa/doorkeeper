@@ -24,7 +24,6 @@ module Doorkeeper
     attr_reader :orm_adapter
 
     def configure(&block)
-      binding.b
       @config = Config::Builder.new(&block).build
     end
 
