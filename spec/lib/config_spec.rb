@@ -3,6 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Doorkeeper::Config do
+  binding.b
   subject(:config) { Doorkeeper.config }
 
   describe "resource_owner_authenticator" do
