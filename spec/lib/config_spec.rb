@@ -415,13 +415,13 @@ RSpec.describe Doorkeeper::Config do
   end
 
   describe "grant_flows" do
-    binding.b
     it "is set to all grant flows by default" do
       expect(Doorkeeper.config.grant_flows)
         .to eq(%w[authorization_code client_credentials])
     end
 
     it "can change the value" do
+      binding.b
       Doorkeeper.configure do
         orm DOORKEEPER_ORM
         grant_flows %w[authorization_code implicit]
