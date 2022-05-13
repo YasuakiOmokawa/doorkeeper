@@ -421,7 +421,6 @@ RSpec.describe Doorkeeper::Config do
     end
 
     it "can change the value" do
-      binding.b
       Doorkeeper.configure do
         orm DOORKEEPER_ORM
         grant_flows %w[authorization_code implicit]
@@ -431,6 +430,7 @@ RSpec.describe Doorkeeper::Config do
     end
 
     context "when including 'authorization_code'" do
+      binding.b
       before do
         Doorkeeper.configure do
           orm DOORKEEPER_ORM
