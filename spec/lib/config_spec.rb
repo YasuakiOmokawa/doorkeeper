@@ -430,7 +430,6 @@ RSpec.describe Doorkeeper::Config do
     end
 
     context "when including 'authorization_code'" do
-      binding.b
       before do
         Doorkeeper.configure do
           orm DOORKEEPER_ORM

@@ -152,7 +152,7 @@ RSpec.describe "Refresh Token Flow" do
         post refresh_token_endpoint_url(
           refresh_token: token_for_private_client.refresh_token)
 
-        binding.b
+
         expect(json_response).to include("error" => "invalid_grant")
       end
 
@@ -162,7 +162,7 @@ RSpec.describe "Refresh Token Flow" do
           client_secret: "1",
           refresh_token: token_for_private_client.refresh_token,
         )
-        binding.b
+
         expect(json_response).to match(
           "error" => "invalid_client",
           "error_description" => an_instance_of(String),
@@ -244,6 +244,7 @@ RSpec.describe "Refresh Token Flow" do
           client: @client, refresh_token: @token.refresh_token,
         )
 
+        binding.b
         expect(json_response).to include("refresh_token" => last_token.refresh_token)
         expect(@token.reload).to be_revoked
       end

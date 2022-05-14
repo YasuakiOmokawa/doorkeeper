@@ -34,7 +34,7 @@ module Doorkeeper
           refresh_token.lock!
           raise Errors::InvalidGrantReuse if refresh_token.revoked?
 
-          binding.b
+
           unless refresh_token_revoked_on_use?
             refresh_token.revoke
           end

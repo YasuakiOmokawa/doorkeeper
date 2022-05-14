@@ -215,7 +215,7 @@ module Doorkeeper
         token_attributes[:application_id] = application&.id
         token_attributes[:scopes] = scopes.to_s
 
-        binding.b
+
         if Doorkeeper.config.polymorphic_resource_owner?
           token_attributes[:resource_owner] = resource_owner
         else
