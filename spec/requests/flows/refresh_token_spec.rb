@@ -244,7 +244,6 @@ RSpec.describe "Refresh Token Flow" do
           client: @client, refresh_token: @token.refresh_token,
         )
 
-        binding.b
         expect(json_response).to include("refresh_token" => last_token.refresh_token)
         expect(@token.reload).to be_revoked
       end
